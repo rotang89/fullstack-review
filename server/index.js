@@ -1,9 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+const db = require('../database')
 let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
+var jsonParser = bodyParser.json();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/repos', function (req, res) {
+  console.log('received post request')
+  console.log(req.body.query)
+  res.end()
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
@@ -13,6 +20,9 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
+  db.retrieve()
+  console.log('retrieved data')
+  res.send('data')
 });
 
 let port = 1128;
