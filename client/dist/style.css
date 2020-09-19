@@ -13,3 +13,7 @@
 .container {
   border-top: 2px orange dashed;
 }
+
+button {
+  margin: 10px
+}

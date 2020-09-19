@@ -4,9 +4,9 @@ const RepoList = (props) => {
       return (
         <div>
         <h3> Repo List Component </h3>
-        <h4>There are {props.repos.length} repos.</h4>
-        <h4 className = 'details'>Repo</h4>
-        <h4 className = 'owner'>Owner</h4>
+        <h4>TOP {props.repos.length} </h4>
+        <h4 className='details'>Repo</h4>
+        <h4 className='owner'>Owner</h4>
         {props.repos.map((repo) => {
           return (
             <div className='container' key={repo.ID}>

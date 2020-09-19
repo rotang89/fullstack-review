@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class Search extends React.Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class Search extends React.Component {
   search() {
     this.props.onSearch(this.state.term);
   }
+
+
 
   render() {
     return (<div>

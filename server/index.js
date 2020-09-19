@@ -9,6 +9,11 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.post('/delete', function(req, res) {
+  db.deleteAll();
+  res.end()
+})
+
 app.post('/repos', function (req, res) {
   console.log('received post request')
   console.log(req.body.query)
