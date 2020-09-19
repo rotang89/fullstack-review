@@ -26,9 +26,8 @@ class App extends React.Component {
   }
 
   search (query) {
-    console.log(`${term} was searched`);
+    console.log(`${query} was searched`);
     // TODO
-
     $.ajax({
       url: '/repos',
       method: 'POST',

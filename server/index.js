@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const db = require('../database')
 const axios = require('axios')
+const config = require('../config.js')
 let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -13,6 +14,8 @@ app.post('/repos', function (req, res) {
   console.log(req.body.query)
   axios.get('https://api.github.com/search/users', {
     params: {
+      'User-Agent': 'request',
+      'Authorization': `token ${config.TOKEN}`,
       "q": req.body.query,
       "page": 1,
       "per_page": 1
@@ -23,7 +26,12 @@ app.post('/repos', function (req, res) {
     return API_res.data.items[0].login
   })
   .then(function(user) {
-    return axios.get(`https://api.github.com/users/${user}/repos`)
+    return axios.get(`https://api.github.com/users/${user}/repos`, {
+      params: {
+        'User-Agent': 'request',
+      'Authorization': `token ${config.TOKEN}`
+      }
+    })
   })
   .then(function(repos) {
     // console.log(repos.data)
