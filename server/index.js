@@ -38,7 +38,7 @@ app.post('/repos', function (req, res) {
     repos.data.map((repo) => {
       db.save(repo)
     })
-    res.send(`stored repos from ${user}`)
+    res.end()
   })
 
   // TODO - your code here!

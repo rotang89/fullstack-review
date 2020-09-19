@@ -32,26 +32,39 @@ let save = (data) => {
     watchers_count: data.watchers,
     Score: data.stargazers_count + data.forks +data.watchers
   }
-  Repo.create(repo, (err, instance) => {
+
+  Repo.find().where('ID').equals(data.id).exec(function(err, repos) {
     if (err) {
-      console.log(err, 'database create error')
+      console.log('error for checking duplicates')
     } else {
-      console.log('database sucess')
+      if(repos.length === 0) {
+        console.log('this is unique')
+        Repo.create(repo, (err, instance) => {
+          if (err) {
+            console.log(err, 'database create error')
+          } else {
+            console.log('database sucess')
+          }
+        })
+      }
     }
   })
+
 }
 
 var retrieve = (callback) => {
 
-  Repo.find({}, function(err, repoData) {
-    console.log('connected to database')
-    if (err) {
-      console.log(err)
-    } else {
-      const arr = repoData.map((repo) => repo._doc)
-      callback(arr)
+  Repo.find().sort({'Score':-1}).limit(25).exec(
+    function(err, repoData) {
+      console.log('connected to database')
+      if (err) {
+        console.log(err)
+      } else {
+        const arr = repoData.map((repo) => repo._doc)
+        callback(arr)
+      }
     }
-  })
+  )
 }
 
 module.exports.save = save;

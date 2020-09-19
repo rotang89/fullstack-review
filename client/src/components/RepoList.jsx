@@ -7,13 +7,14 @@ const RepoList = (props) => {
         There are {props.repos.length} repos.
         {props.repos.map((repo) => {
           return (
-          <div>Name: {repo.Repo_Name}</div>
+            <div>
+              <div>Name: {repo.Repo_Name}</div>
+              <div>Score: {repo.Score}</div>
+            </div>
           )
         })}
       </div>
       )
 }
-
-  // {props.repos[0].Repo_Name}
 
 export default RepoList;
