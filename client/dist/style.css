@@ -1,0 +1,15 @@
+.details {
+  width: 60%;
+  display: inline-block
+}
+
+.owner {
+  width: 30%;
+  right: 0px;
+  display: inline-block;
+  vertical-align: top
+}
+
+.container {
+  border-top: 2px orange dashed;
+}
