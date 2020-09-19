@@ -15,17 +15,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const self = this;
     axios.get('/repos')
     .then(function (res) {
-      console.log(res)
+      // console.log(res.data)
+      self.setState({
+        repos: [...res.data]
     })
-      this.setState({
-        repos: ['hello']
     })
   }
 
   search (query) {
-    console.log(`${query} was searched`);
+    console.log(`${term} was searched`);
     // TODO
 
     $.ajax({

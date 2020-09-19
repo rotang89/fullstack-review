@@ -35,20 +35,23 @@ let save = (data) => {
   Repo.create(repo, (err, instance) => {
     if (err) {
       console.log(err, 'database create error')
+    } else {
+      console.log('database sucess')
     }
   })
 }
 
-var retrieve = (data) => {
+var retrieve = (callback) => {
 
-  Repo.find(), function(err, repoData) {
+  Repo.find({}, function(err, repoData) {
     console.log('connected to database')
     if (err) {
-      return handleError(err)
+      console.log(err)
     } else {
-      return repoData
+      const arr = repoData.map((repo) => repo._doc)
+      callback(arr)
     }
-  }
+  })
 }
 
 module.exports.save = save;
